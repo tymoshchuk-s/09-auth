@@ -78,7 +78,7 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/profile', '/notes/:path*', '/login', '/register'],
+  matcher: ['/profile/:path*', '/notes/:path*', '/sign-in', '/sign-up'],
 };
 
 // acessToken=true > /login >  isPublicRoute true > redirect to /
