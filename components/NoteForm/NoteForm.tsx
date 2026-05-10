@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "@/lib/api";
+import { createNote } from "@/lib/api/clientApi";
 import { useNoteStore } from "@/lib/store/noteStore";
 import toast from "react-hot-toast";
 import css from "./NoteForm.module.css";
@@ -46,7 +46,7 @@ export default function NoteForm() {
           name="title"
           type="text"
           className={css.input}
-          value={draft.title || ''}
+          value={draft.title}
           onChange={handleChange}
         />
       </div>
@@ -58,7 +58,7 @@ export default function NoteForm() {
           name="content"
           rows={8}
           className={css.textarea}
-          value={draft.content || ''}
+          value={draft.content}
           onChange={handleChange}
         />
       </div>
@@ -69,14 +69,25 @@ export default function NoteForm() {
           id="tag"
           name="tag"
           className={css.select}
-          value={draft.tag || ''}
+          value={draft.tag}
           onChange={handleChange}
         >
-          <option value="Todo">Todo</option>
           <option value="Work">Work</option>
           <option value="Personal">Personal</option>
           <option value="Meeting">Meeting</option>
           <option value="Shopping">Shopping</option>
+          <option value="Ideas">Ideas</option>
+          <option value="Travel">Travel</option>
+          <option value="Finance">Finance</option>
+          <option value="Health">Health</option>
+          <option value="Important">Important</option>
+          <option value="Todo">Todo</option>
+
+
+
+
+
+
         </select>
       </div>
 

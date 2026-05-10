@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Note } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteNote } from "@/lib/api";
+import { deleteNote } from "@/lib/api/clientApi";
 import toast from "react-hot-toast";
 import css from "../NoteList/NoteList.module.css";
 import Link from "next/link";
@@ -34,27 +34,27 @@ export default function NoteList({ notes }: NoteListProps) {
     }
   };
 
-    return (
-      <ul className={css.list}>
-        {notes.map((note) => (
-          <li key={note.id} className={css.listItem}>
-            <h2 className={css.title}>{note.title}</h2>
-            <p className={css.content}>{note.content}</p>
-            <div className={css.footer}>
-              <span className={css.tag}>{note.tag}</span>
-              <Link href={`/notes/${note.id}`} className={css.link}>
-                View details
-              </Link>
-              <button
-                className={css.button}
-                onClick={() => handleDelete(note.id)}
-                disabled={loadingId === note.id}
-              >
-                {loadingId === note.id ? "Deleting..." : "Delete"}
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <ul className={css.list}>
+      {notes.map((note) => (
+        <li key={note.id} className={css.listItem}>
+          <h2 className={css.title}>{note.title}</h2>
+          <p className={css.content}>{note.content}</p>
+          <div className={css.footer}>
+            <span className={css.tag}>{note.tag}</span>
+            <Link href={`/notes/${note.id}`} className={css.link}>
+              View details
+            </Link>
+            <button
+              className={css.button}
+              onClick={() => handleDelete(note.id)}
+              disabled={loadingId === note.id}
+            >
+              {loadingId === note.id ? "Deleting..." : "Delete"}
+            </button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}

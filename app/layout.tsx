@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
 const roboto = Roboto({
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: "Discover NoteHub",
     description:
       "NoteHub is a fast and user-friendly app for managing personal notes. Keep your ideas neatly organized and accessible anytime, anywhere.",
-    url: "https://08-zustand-nextjs-project.vercel.app",
+    url: "https://09-auth-nextjs-project.vercel.app/",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -44,15 +45,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable}`}>
+      <body className={roboto.variable}>
         <TanStackProvider>
-          <Header />
-          <main>
-            {children}
-            {modal}
-          </main>
-          <div id="modal-root"></div>
-          <Footer />
+          <AuthProvider>
+            <Header />
+            <main>
+              {children}
+              {modal}
+            </main>
+            <div id="modal-root"></div>
+            <Footer />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>
